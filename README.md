@@ -1,2 +1,203 @@
-# matematicas_especiales_calculadora
-Calculadora creada para matemáticas especiales
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Matematicas especiales</title>
+    <link rel="stylesheet"
+    href="fondo.css">
+    
+</head>
+<body>
+    <section class="presentacion" id="presentacion">
+        <center>
+        <div class="presentacion video"> 
+            <video src="./inicio.mp4" autoplay muted loop>
+            </video>
+        </div>
+
+         <h3> 1. Potencias de 𝑖 </h3>
+        <h3> Recuerda que la unidad imaginaria 𝑖 es definida como la raíz cuadrada de –1.   Así, 𝑖 <sup>2</sup> = –1.</h3>
+    Ingresa la potencia de 𝑖: <input type="text" id="potencia"><br><br>
+
+    El residuo es: <input type="text" id="residuo"><br><br>
+    Por lo tanto 𝑖 es igual a: <input type="text" id="solucion"><br><br>
+
+    <input type="button" value="CALCULAR" onclick="operacion ()">
+
+    <script>
+    function operacion ()
+    {
+     var resultado=Number(document.getElementById('solucion').value);
+    var potencia=Number(document.getElementById('potencia').value);
+    var  valor=potencia%4;
+    document.getElementById('residuo').value=valor;  
+
+    var aux_1 = ("1")
+    var aux_2 = ("𝑖")
+    var aux_3 = ("-1")
+    var aux_4 = ("-𝑖")
+
+    if (valor == 0) {
+        document.getElementById('solucion').value=aux_1;  
+    }
+    if (valor == 1) {
+        document.getElementById('solucion').value=aux_2;  
+    }
+    if (valor == 2) {
+        document.getElementById('solucion').value=aux_3;  
+    }
+    if (valor == 3) {
+        document.getElementById('solucion').value=aux_4;  
+    }
+
+
+    }
+  
+</script>
+
+<h3> 2. Calculadora de Numeros Complejos</h3>
+<label for="Num1">Ingrese un numero </label>
+<input type="text" placeholder="Parte Real" id="Num1"> + 𝑖
+<input type="text" placeholder="Parte Imaginaria" id="im1"><br><br>
+
+<label for="Num2">Ingrese un numero </label>
+<input type="text" placeholder="Parte Real" id="Num2"> + 𝑖
+<input type="text" placeholder="Parte Imaginaria" id="im2"><br><br>
+
+<label for="Res">Resultado = </label>
+<input type="text" placeholder="Real" id="Res1"> + 𝑖
+<input type="text" placeholder="Imaginario" id="Res2"><br><br>
+
+<label for="Den1">Denominador (Para la division) </label>
+<input type="text" placeholder="Denominador" id="Den"><br><br>
+
+<input type="button" value="Sumar" onclick="suma();">
+<input type="button" value="Restar" onclick="resta();">
+<input type="button" value="Multiplicar" onclick="multiplicar();">
+<input type="button" value="Dividir" onclick="dividir();">
+
+<script type="text/javascript">
+
+function suma (){
+        var N1=parseInt(document.getElementById("Num1").value)
+        var N2=parseInt(document.getElementById("Num2").value)
+
+        var I1=parseInt(document.getElementById("im1").value)
+        var I2=parseInt(document.getElementById("im2").value)
+
+        var resul_suma_real = N1+N2
+        var resul_suma_img = I1+I2
+
+        document.getElementById('Res1').value=resul_suma_real
+        document.getElementById('Res2').value=resul_suma_img
+        document.getElementById('Den').value=""
+    }
+
+    function resta (){
+        var N1=parseInt(document.getElementById("Num1").value)
+        var N2=parseInt(document.getElementById("Num2").value)
+
+        var I1=parseInt(document.getElementById("im1").value)
+        var I2=parseInt(document.getElementById("im2").value)
+
+        var resul_resta_real = N1-N2
+        var resul_resta_img = I1-I2
+
+        document.getElementById('Res1').value=resul_resta_real
+        document.getElementById('Res2').value=resul_resta_img
+        document.getElementById('Den').value=""
+    }
+
+    function multiplicar (){
+        var N1=parseInt(document.getElementById("Num1").value)
+        var N2=parseInt(document.getElementById("Num2").value)
+
+        var I1=parseInt(document.getElementById("im1").value)
+        var I2=parseInt(document.getElementById("im2").value)
+
+        var resul_multi_real = ((N1*N2)-(I1*I2))
+        var resul_multi_img = ((N1*I2)+(I1*N2))
+
+        document.getElementById('Res1').value=resul_multi_real
+        document.getElementById('Res2').value=resul_multi_img
+        document.getElementById('Den').value=""
+    }
+
+    function dividir (){
+        var N1=parseInt(document.getElementById("Num1").value)
+        var N2=parseInt(document.getElementById("Num2").value)
+
+        var I1=parseInt(document.getElementById("im1").value)
+        var I2=parseInt(document.getElementById("im2").value)
+
+        var I2_C = (I2*-1) 
+        var aux = ((I2*I2_C))
+
+        var resul_div_real = ((N1*N2)-(I1*I2_C))
+        var resul_div_img = ((N1*I2_C)+(I1*N2))
+        var resul_den = ((N2*N2)-aux)
+
+        document.getElementById('Res1').value=resul_div_real
+        document.getElementById('Res2').value=resul_div_img
+        document.getElementById('Den').value=resul_den
+    }
+
+</script>
+
+<h3> 3. Conversion de Rectangular a Polar </h3>
+<label for="real">Digite el numero real y su parte imaginaria </label><br><br>
+<input type="text" placeholder="Parte Real" id="real"> + 𝑖
+<input type="text" placeholder="Parte Imaginaria" id="imag"> <br><br>
+
+<label for="Res">Respuesta </label>
+
+<input type="text" placeholder="|W|" id="TotalW"> + <
+<input type="text" placeholder="θ" id="TotalO"><br><br>
+
+<input type="button" value="CALCULAR" onclick="polar();">
+
+<script type="text/javascript">
+
+function polar (){
+    var R=parseInt(document.getElementById("real").value)
+    var I=parseInt(document.getElementById("imag").value)
+
+    var x1  = (R*R)
+    var y1 = (I*I)
+    var suma  = x1+y1
+    var raiz  = Math.sqrt(suma)
+    
+    var arco = Math.atan(I/R);
+    var polar= arco * 180/3.141592
+
+    var R_negativa = polar+180
+    var I_negativa = 180-polar
+    var I_R_negativa =polar -180
+  
+    //Imaginaria y  Real positivas
+    if (I>0 && R>0) {
+        document.getElementById('TotalO').value=polar;  
+    }
+    // Real negativa
+    if (I>0 && R<0) {
+        document.getElementById('TotalO').value=R_negativa;  
+    }
+     // Imaginaria negativa
+    if (I<0 && R>0) {
+        document.getElementById('TotalO').value=polar;  
+    }
+     // Imaginaria y Real negativas
+    if (I<0 && R<0) {
+        document.getElementById('TotalO').value=I_R_negativa;  
+    }
+
+    document.getElementById('TotalW').value=raiz
+
+}
+
+
+</script>
+
+
+</body>
+</html>
